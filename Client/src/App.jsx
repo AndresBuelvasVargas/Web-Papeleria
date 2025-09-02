@@ -3,6 +3,8 @@ import { ClientesPage } from "./pages/ClientesPage";
 import { ClientesFormPage } from "./pages/ClientesFormPage";
 import { Navegacion } from "./components/Navegacion";
 import { Toaster } from "react-hot-toast";
+import { ProveedoresPage } from "./pages/ProveedoresPage";
+import { ProveedoresFormPage } from "./pages/ProveedoresFormPage";
 
 function App() {
   return (
@@ -11,7 +13,10 @@ function App() {
         <Navegacion />
         <Toaster />
         <Routes>
-          <Route path="/" element={<Navigate to="/clientes" />} />
+          {/*<Route path="/" element={<Navigate to="/clientes" />} />*/}
+          <Route path="/proveedores" element={<ProveedoresPage />} />
+          <Route path="/proveedores-create" element={<ProveedoresFormPage />} />
+          <Route path="/proveedores/:id" element={<ProveedoresFormPage />} />
           <Route path="/clientes" element={<ClientesPage />} />
           <Route path="/clientes-create" element={<ClientesFormPage />} />
           <Route path="/clientes/:id" element={<ClientesFormPage />} />

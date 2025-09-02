@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
-  crearCliente,
-  eliminarCliente,
-  actualizarCliente,
-  obtenerCliente,
-} from "../api/Clientes.api";
+  crearProveedor,
+  eliminarProveedor,
+  actualizarProveedor,
+  obtenerProveedor,
+} from "../api/Proveedores.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
-export function ClientesFormPage() {
+export function ProveedoresFormPage() {
   const {
     register,
     handleSubmit,
@@ -23,37 +23,37 @@ export function ClientesFormPage() {
 
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
-      console.log("Actualizar cliente");
+      console.log("Actualizar Proveedor");
       console.log(data);
-      await actualizarCliente(params.id, data);
-      toast.success("Cliente actualizado exitosamente", {
+      await actualizarProveedor(params.id, data);
+      toast.success("Proveedor actualizado exitosamente", {
         position: "top-center",
         background: "#146cf0ff",
         color: "#fff",
       });
     } else {
-      console.log("Crear nuevo cliente");
-      await crearCliente(data);
-      toast.success("Cliente creado exitosamente", {
+      console.log("Crear nuevo proveedor");
+      await crearProveedor(data);
+      toast.success("Proveedor creado exitosamente", {
         position: "top-center",
         background: "#101010",
         color: "#fff",
       });
     }
-    navigate("/clientes");
+    navigate("/proveedores");
   });
 
   useEffect(() => {
-    async function cargarCliente() {
+    async function cargarProveedor() {
       if (params.id) {
-        const { data } = await obtenerCliente(params.id);
+        const { data } = await obtenerProveedor(params.id);
         setValue("Nombre", data.Nombre);
-        setValue("Direccion", data.Direccion);
+        setValue("Contacto", data.Contacto);
         setValue("Telefono", data.Telefono);
         setValue("Email", data.Email);
       }
     }
-    cargarCliente();
+    cargarProveedor();
   }, []);
 
   return (
@@ -68,11 +68,11 @@ export function ClientesFormPage() {
         {errors.Nombre && <span>El nombre es requerido</span>}
         <input
           className="bg-zinc-800 p-3 rounded-lg block w-full mb-3"
-          placeholder="Dirección"
+          placeholder="Contacto"
           type="text"
-          {...register("Direccion", { required: true })}
+          {...register("Contacto", { required: true })}
         />
-        {errors.Direccion && <span>La dirección es requerida</span>}
+        {errors.Contacto && <span>El contacto es requerido</span>}
         <input
           className="bg-zinc-800 p-3 rounded-lg block w-full mb-3"
           placeholder="Teléfono"
@@ -98,25 +98,26 @@ export function ClientesFormPage() {
       {!params.id && (
         <button
           className="bg-green-500 text-white px-4 py-2 rounded-lg w-full mt-4"
-          onClick={() => navigate("/clientes")}
+          onClick={() => navigate("/proveedores")}
         >
           Volver
         </button>
       )}
+
       {params.id && (
         <div className="flex justify-end">
           <button
             className="bg-red-500 text-white px-4 py-2 rounded-lg w-50 mt-4"
             onClick={async () => {
-              if (window.confirm("¿Estás seguro de eliminar este cliente?")) {
-                const res = await eliminarCliente(params.id);
+              if (window.confirm("¿Estás seguro de eliminar este proveedor?")) {
+                const res = await eliminarProveedor(params.id);
                 if (res.status === 204) {
-                  toast.success("Cliente eliminado exitosamente", {
+                  toast.success("Proveedor eliminado exitosamente", {
                     position: "top-center",
                     background: "#f80462ff",
                     color: "#fff",
                   });
-                  navigate("/clientes");
+                  navigate("/proveedores");
                 }
               }
             }}

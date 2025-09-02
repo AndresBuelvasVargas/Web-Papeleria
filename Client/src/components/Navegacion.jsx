@@ -6,9 +6,9 @@ export function Navegacion() {
       <Link to="/clientes">
         <h1 className="font-bold text-3xl mb-4">Clientes</h1>
       </Link>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-        <Link to="/clientes-create">Crear Cliente</Link>
-      </button>
+      <Link to="/proveedores">
+        <h1 className="font-bold text-3xl mb-4">Proveedores</h1>
+      </Link>
     </div>
   );
 }
