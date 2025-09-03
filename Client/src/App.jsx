@@ -5,6 +5,8 @@ import { Navegacion } from "./components/Navegacion";
 import { Toaster } from "react-hot-toast";
 import { ProveedoresPage } from "./pages/ProveedoresPage";
 import { ProveedoresFormPage } from "./pages/ProveedoresFormPage";
+import { ProductosPage } from "./pages/ProductosPage";
+import { ProductosFormPage } from "./pages/ProductosFormPage";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/clientes" element={<ClientesPage />} />
           <Route path="/clientes-create" element={<ClientesFormPage />} />
           <Route path="/clientes/:id" element={<ClientesFormPage />} />
+          <Route path="/productos" element={<ProductosPage />} />
+          <Route path="/productos-create" element={<ProductosFormPage />} />
+          <Route path="/productos/:id" element={<ProductosFormPage />} />
         </Routes>
       </div>
     </BrowserRouter>

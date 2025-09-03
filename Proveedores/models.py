@@ -8,4 +8,4 @@ class Proveedor(models.Model):
     Email = models.EmailField(max_length=100, unique=True, blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return self.Nombre
