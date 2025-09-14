@@ -29,15 +29,15 @@ Desarrollada con **React + Vite** en el frontend y **Django REST Framework + MyS
 
 ### Menú principal
 Pantalla inicial con accesos a cada módulo.  
-![Menu Principal](docs/images/menu_principal.png)
+
 
 ### Lista de ventas
 Tarjetas con cliente, fecha y total de la venta.  
-![Ventas](docs/images/ventas.png)
+
 
 ### Movimientos de inventario
 Entradas (verde) y salidas (rojo) ordenadas de forma descendente.  
-![Movimientos](docs/images/movimientos.png)
+
 
 ---
 
