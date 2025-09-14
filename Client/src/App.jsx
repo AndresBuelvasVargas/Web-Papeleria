@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 import { ClientesPage } from "./pages/ClientesPage";
 import { ClientesFormPage } from "./pages/ClientesFormPage";
 import { Navegacion } from "./components/Navegacion";
@@ -7,15 +12,31 @@ import { ProveedoresPage } from "./pages/ProveedoresPage";
 import { ProveedoresFormPage } from "./pages/ProveedoresFormPage";
 import { ProductosPage } from "./pages/ProductosPage";
 import { ProductosFormPage } from "./pages/ProductosFormPage";
+import { VentasFormPage } from "./pages/VentasFormPage";
+import { VentasPage } from "./pages/VentasPage";
+import { InventarioPage } from "./pages/InventarioPage";
+import { ListaMovimientos } from "./components/MovimientosLista";
+import { MenuPrincipal } from "./components/CompInicio";
+
+function LayoutConNavegacion() {
+  return (
+    <div className="container mx-auto">
+      <Navegacion />
+      <Outlet /> {/* Aquí se renderizan las rutas hijas */}
+    </div>
+  );
+}
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="container mx-auto">
-        <Navegacion />
-        <Toaster />
-        <Routes>
-          {/*<Route path="/" element={<Navigate to="/clientes" />} />*/}
+      <Toaster />
+      <Routes>
+        {/* Ruta raíz sin navegación */}
+        <Route path="/" element={<MenuPrincipal />} />
+
+        {/* Todas las demás rutas con navegación */}
+        <Route element={<LayoutConNavegacion />}>
           <Route path="/proveedores" element={<ProveedoresPage />} />
           <Route path="/proveedores-create" element={<ProveedoresFormPage />} />
           <Route path="/proveedores/:id" element={<ProveedoresFormPage />} />
@@ -25,8 +46,13 @@ function App() {
           <Route path="/productos" element={<ProductosPage />} />
           <Route path="/productos-create" element={<ProductosFormPage />} />
           <Route path="/productos/:id" element={<ProductosFormPage />} />
-        </Routes>
-      </div>
+          <Route path="/ventas" element={<VentasPage />} />
+          <Route path="/ventas-create" element={<VentasFormPage />} />
+          <Route path="/ventas/:id" element={<VentasFormPage />} />
+          <Route path="/inventario" element={<InventarioPage />} />
+          <Route path="/movimientos-lista" element={<ListaMovimientos />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
